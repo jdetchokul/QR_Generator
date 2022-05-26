@@ -16,7 +16,7 @@ def header(output_path, width):
     image = Image.new("RGB", (width,45), "white")
     draw = ImageDraw.Draw(image)
     color = "red"
-    x = 55
+    x = 40
     y = 10
     text = 'Connect to ANCA CNC WIFI'
     font = ImageFont.truetype(r'filepath\..\Alef-Bold.ttf', size = 25)
@@ -49,7 +49,7 @@ def draw(filename,i):
     # # y = height - textheight - margin
     x = 80
     y = 3
-    x1 = 55
+    x1 = 40
     y2 = 375
     font = ImageFont.truetype(r'filepath\..\Alef-Bold.ttf', 30)
     font2 = ImageFont.truetype(r'filepath\..\Alef-Bold.ttf', 25)
