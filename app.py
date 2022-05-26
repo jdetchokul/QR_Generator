@@ -12,11 +12,11 @@ from PIL import Image, ImageDraw, ImageFont
 l1 = []
 
 # Create header image
-def header(output_path):
-    image = Image.new("RGB", (370,50), "white")
+def header(output_path, width):
+    image = Image.new("RGB", (width,45), "white")
     draw = ImageDraw.Draw(image)
     color = "red"
-    x = 20
+    x = 55
     y = 10
     text = 'Connect to ANCA CNC WIFI'
     font = ImageFont.truetype(r'filepath\..\Alef-Bold.ttf', size = 25)
@@ -47,10 +47,10 @@ def draw(filename,i):
     # margin = 100
     # # x = width - textwidth - margin
     # # y = height - textheight - margin
-    x = 65
+    x = 80
     y = 3
-    x1 = 20
-    y2 = 330
+    x1 = 55
+    y2 = 375
     font = ImageFont.truetype(r'filepath\..\Alef-Bold.ttf', 30)
     font2 = ImageFont.truetype(r'filepath\..\Alef-Bold.ttf', 25)
     draw.text((x, y), text, font=font)
@@ -122,17 +122,11 @@ def main():
     widths = []
     heights = []
 
-    # Draw header
-    (width_head, height_head) = header(r'.\output\header.png')
-
-    widths.append(width_head)
-    heights.append(height_head)
-
     for i in l1:
-        qr.add_data(f'https://amtte.onrender.com/lib/{i}')
+        qr.add_data(f'http://ws-ag-th-08.anca.com.au:5000/lib/{i}')
         qr.make(fit=True)
         img = qr.make_image(fill_color="black", back_color="white")
-        img = qrcode.make(f'https://amtte.onrender.com/lib/{i}')
+        img = qrcode.make(f'http://ws-ag-th-08.anca.com.au:5000/lib/{i}')
         type(img)  # qrcode.image.pil.PilImage
 
         # Add size of QR in list of wigths and heights
@@ -141,6 +135,12 @@ def main():
             height_qr = img.size[1]
             widths.append(width_qr)
             heights.append(height_qr)
+
+            # Draw header
+            (width_head, height_head) = header(r'.\output\header.png', width=width_qr)
+
+            widths.append(width_head)
+            heights.append(height_head)
 
         img.save(r'.\output\{}.png'.format(i))
         draw(r'.\output\{}.png'.format(i),i)
