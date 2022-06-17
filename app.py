@@ -122,6 +122,17 @@ def main():
     widths = []
     heights = []
 
+    ## Generate QR code out of actual range
+    # : maximum generate = 60 items per 1 time
+    # : must change every l1 in code below to l2
+
+    #l2 = []
+    #for i in range(31,91):
+    #    number = "{:03d}".format(i)
+    #    text = 'ETH' + number
+    #    l2.append(text)
+
+
     for i in l1:
         qr.add_data(f'http://ws-ag-th-08.anca.com.au:5000/lib/{i}')
         qr.make(fit=True)
